@@ -1,0 +1,23 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  debug:  # Use debug instead of logging
+
+  otlp/elastic:
+    endpoint: "http://your-elasticsearch-endpoint:9200"
+    headers:
+      Authorization: "Bearer YOUR_API_KEY"
+
+processors:
+  batch:
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug, otlp/elastic]  # Replace logging with debug
