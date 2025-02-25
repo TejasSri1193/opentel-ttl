@@ -1,1 +1,1 @@
-TTL OpenTTL
+TTL OpenTel
